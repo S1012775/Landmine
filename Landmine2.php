@@ -1,5 +1,4 @@
 <?php
-$time1 = microtime(true);
 $row = 60;
 $col = 50;
 
