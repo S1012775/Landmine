@@ -73,7 +73,3 @@ for ($m = 0; $m < $col; $m ++){
         echo "N";
     }
 }
-
-// echo "<hr>";
-// $time2 = microtime(true);
-// echo $time2 - $time1;
