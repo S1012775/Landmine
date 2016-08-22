@@ -74,6 +74,6 @@ for ($m = 0; $m < $col; $m ++){
     }
 }
 
-echo "<hr>";
-$time2 = microtime(true);
-echo $time2 - $time1;
+// echo "<hr>";
+// $time2 = microtime(true);
+// echo $time2 - $time1;
