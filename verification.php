@@ -6,7 +6,7 @@ $str = $_GET["map"];
 echo "您輸入的字串:".$str . "<br>";
 echo $msg =verificationStr($str) . "<br>";
 
-verificationCount($str);
+// verificationCount($str);
 
 
 
@@ -42,53 +42,47 @@ function verificationStr($str)
     return $msg;
 }
 
-function verificationCount($str)
-{
+// function verificationCount($str)
+// {
+    // if($checkStr == true ) {
+        $replaceN = str_replace("N","","$str");//去掉N
+        $frame = str_split($replaceN);
+        $landmine = array_chunk($frame,10);  //轉成二維陣列
 
-    $replaceN = str_replace("N","","$str");//去掉N
-    $frame = str_split($replaceN);
-    $landmine = array_chunk($frame,10);  //轉成二維陣列
-
-    for ($m = 0; $m < 10; $m ++){
-        for ($n = 0; $n < 10; $n ++){
-            if ($landmine[$m][$n] === "M"){
-                if ($landmine[$m][$n - 1] !== "M"){  //上
-                    $landmine[$m][$n - 1] ++;
+        for ($m = 0; $m < 10; $m ++) {
+            for ($n = 0; $n < 10; $n ++) {
+                $count = 0;
+                if ($landmine[$m][$n] !== "M"){
+                    if ($landmine[$m][$n - 1] === "M") {  //上
+                        $count ++;
+                    }
+                    if ($landmine[$m][$n + 1] === "M") {  //下
+                        $count ++;
+                    }
+                    if ($landmine[$m - 1][$n] === "M") {  //左
+                        $count ++;
+                    }
+                    if ($landmine[$m + 1][$n] === "M") {  //右
+                        $count ++;
+                    }
+                    if ($landmine[$m - 1][$n - 1] === "M") {  //左上
+                        $count ++;
+                    }
+                    if ($landmine[$m - 1][$n + 1] === "M") {  //左下
+                        $count ++;
+                    }
+                    if ($landmine[$m + 1][$n - 1] === "M") {  //右上
+                        $count++;
+                    }
+                    if ($landmine[$m + 1][$n + 1] === "M") { //右下
+                        $count ++;
+                    }
+                    if ($landmine[$m][$n] != $count){
+                   echo "<br>" . "[" . $m . " , " . $n . "]" . " 判斷錯誤，應該為" . $mineCount . "<br>";
                 }
-                if ($landmine[$m][$n + 1] !== "M"){  //下
-                    $landmine[$m][$n + 1] ++;
-                }
-                if ($landmine[$m - 1][$n] !== "M"){  //左
-                    $landmine[$m - 1][$n] ++;
-                }
-                if ($landmine[$m + 1][$n] !== "M"){  //右
-                    $landmine[$m + 1][$n] ++;
-                }
-                if ($landmine[$m - 1][$n - 1] !== "M"){  //左上
-                    $landmine[$m - 1][$n - 1] ++;
-                }
-                if ($landmine[$m - 1][$n + 1] !== "M"){  //左下
-                    $landmine[$m - 1][$n + 1] ++;
-                }
-                if ($landmine[$m + 1][$n - 1] !== "M"){  //右上
-                    $landmine[$m + 1][$n - 1] ++;
-                }
-                if ($landmine[$m + 1][$n + 1] !== "M"){ //右下
-                    $landmine[$m + 1][$n + 1] ++;
                 }
             }
         }
-    }
-
-
-
-    // foreach($landmine as $a){
-    //     foreach ($a as $b){
-    //     echo $b;
-    //     }
-    //     echo "<br>";
     // }
-
-
-}
+// }
 
