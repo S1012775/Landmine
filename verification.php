@@ -14,7 +14,7 @@ for($i = 0; $i < 10; $i++) {
 }
 
 if(strlen($str) != 109) {
-    echo "長度不符合，您的字串長度為" . strlen($str) ."。";
+    echo "字串長度應為109，目前字串長度為" . strlen($str) ."。";
 }
 
 if(strlen($strNoN) != 10) {
@@ -22,11 +22,11 @@ if(strlen($strNoN) != 10) {
 }
 
 if(substr_count("$str","N") !=9) {
-    echo "N的數量不正確，你的N數量為" . substr_count("$str","N") ."。";
+    echo "N的數量應為9個，目前N數量為" . substr_count("$str","N") ."。";
 }
 
 if(substr_count("$str","M") !=40) {
-    echo "炸彈數目不正確，您的炸彈數目是" . substr_count("$str","M") . "個。";
+    echo "炸彈數目應為40個，目前炸彈數目是" . substr_count("$str","M") . "個。";
 }
 
 if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str","N") ==9){
@@ -34,7 +34,7 @@ if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str
     }
 
 if(!preg_match($standard, $str, $value)) {
-    echo "輸入格式不正確，出現M/N及0-8以外的字元。";
+    echo "格式不正確，出現M/N及0-8以外的字元。";
 }
 
 if($checkStr == 109 ) {
