@@ -3,86 +3,84 @@
 header("content-type: text/html; charset=utf-8");
 $str = $_GET["map"];
 
-echo "您輸入的字串:".$str . "<br>";
-echo $msg =verificationStr($str) . "<br>";
 
-// verificationCount($str);
-
-
-
-
-
-function verificationStr($str)
-{
-
-    if(!is_string($str)) {
-        $msg = "請輸入字串";
-    }
-
-    $a =explode("N",$str);
-    for($i = 0; $i < 10; $i++) {
-        $b = $a [$i];
-    }
-
-    if(substr_count("$str","N") !=9) {
-        $msg =  "不是10*10的陣列2";
-    }
-    if(strlen($b) != 10) {
-        $msg =  "不是10*10的陣列1";
-    }
-
-    if(substr_count("$str","M") !=40) {
-        $msg =  "炸彈數目不正確";
-    }
-    else {
-        $checkStr == true ;
-        $msg = "字串符合條件";
-    }
-
-    return $msg;
+$replaceN = str_replace("N","","$str");//去掉N
+$frame = str_split($replaceN); //存為陣列
+$landmine = array_chunk($frame,10);  //轉成二維陣列
+$explodeN =explode("N",$str);
+for($i = 0; $i < 10; $i++) {
+    $strNoN = $explodeN [$i];
 }
 
-// function verificationCount($str)
-// {
-    // if($checkStr == true ) {
-        $replaceN = str_replace("N","","$str");//去掉N
-        $frame = str_split($replaceN);
-        $landmine = array_chunk($frame,10);  //轉成二維陣列
+for ($m = 0; $m < 10; $m ++){
+    for ($n = 0; $n < 10; $n ++){
+        echo $landmine[$m][$n];
+    }
+    if ($m < 9) {
+        echo "N" ."<br>";
+    }
+}
+echo"<br>";
+// echo strlen($str);
 
-        for ($m = 0; $m < 10; $m ++) {
-            for ($n = 0; $n < 10; $n ++) {
-                $count = 0;
-                if ($landmine[$m][$n] !== "M"){
-                    if ($landmine[$m][$n - 1] === "M") {  //上
-                        $count ++;
-                    }
-                    if ($landmine[$m][$n + 1] === "M") {  //下
-                        $count ++;
-                    }
-                    if ($landmine[$m - 1][$n] === "M") {  //左
-                        $count ++;
-                    }
-                    if ($landmine[$m + 1][$n] === "M") {  //右
-                        $count ++;
-                    }
-                    if ($landmine[$m - 1][$n - 1] === "M") {  //左上
-                        $count ++;
-                    }
-                    if ($landmine[$m - 1][$n + 1] === "M") {  //左下
-                        $count ++;
-                    }
-                    if ($landmine[$m + 1][$n - 1] === "M") {  //右上
-                        $count++;
-                    }
-                    if ($landmine[$m + 1][$n + 1] === "M") { //右下
-                        $count ++;
-                    }
-                    if ($landmine[$m][$n] != $count){
-                   echo "<br>" . "[" . $m . " , " . $n . "]" . " 判斷錯誤，應該為" . $count . "<br>";
+if(strlen($str) != 109) {
+    echo "長度不符合，您的字串長度為" . strlen($str);
+}
+
+if(strlen($strNoN) != 10) {
+    echo "不是10*10的陣列";
+}
+
+if(substr_count("$str","N") !=9) {
+    echo "N的數量不正確，你的N數量為" . substr_count("$str","N");
+}
+
+if(substr_count("$str","M") !=40) {
+    echo "炸彈數目不正確，您的炸彈數目是" . substr_count("$str","M") . "個";
+}
+
+if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str","N") ==9){
+       $checkStr = 109;
+    }
+
+
+if($checkStr == 109 ) {
+    for ($m = 0; $m < 10; $m ++) {
+        for ($n = 0; $n < 10; $n ++) {
+            $count = 0;
+            if ($landmine[$m][$n] !== "M"){
+                if ($landmine[$m][$n - 1] === "M") {  //上
+                    $count ++;
                 }
+                if ($landmine[$m][$n + 1] === "M") {  //下
+                    $count ++;
                 }
+                if ($landmine[$m - 1][$n] === "M") {  //左
+                    $count ++;
+                }
+                if ($landmine[$m + 1][$n] === "M") {  //右
+                    $count ++;
+                }
+                if ($landmine[$m - 1][$n - 1] === "M") {  //左上
+                    $count ++;
+                }
+                if ($landmine[$m - 1][$n + 1] === "M") {  //左下
+                    $count ++;
+                }
+                if ($landmine[$m + 1][$n - 1] === "M") {  //右上
+                    $count++;
+                    }
+                if ($landmine[$m + 1][$n + 1] === "M") { //右下
+                    $count ++;
+                }
+                if ($landmine[$m][$n] != $count){
+               echo "[" . $m . " , " . $n . "]" . " 判斷不符合，應該為" . $count ;
+            }
             }
         }
-    // }
-// }
+    }
+}
 
+if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str","N") == 9 && $landmine[$m][$n] === $count ){
+       echo "符合" ;
+    }
