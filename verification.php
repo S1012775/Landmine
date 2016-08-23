@@ -5,10 +5,10 @@ $str = $_GET["map"];
 
 $standard = "/^([0-8MN]+)$/";
 
-$replaceN = str_replace("N","","$str");//去掉N
+$replaceN = str_replace("N","", $str);//去掉N
 $frame = str_split($replaceN); //存為陣列
-$landmine = array_chunk($frame,10);  //轉成二維陣列
-$explodeN =explode("N",$str);
+$landmine = array_chunk($frame, 10);  //轉成二維陣列
+$explodeN = explode("N", $str);
 for($i = 0; $i < 10; $i++) {
     $strNoN = $explodeN [$i];
 }
@@ -74,6 +74,6 @@ if($checkStr == 109 ) {
     }
 }
 
-if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str","N") == 9 && $landmine[$m][$n] === $count ){
+if(mb_strlen($str) == 109 && substr_count("$str","M") == 40 && substr_count("$str","N") == 9 && $landmine[$m][$n] === $count ){
        echo "符合" ;
     }
