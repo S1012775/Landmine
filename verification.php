@@ -78,7 +78,7 @@ function verificationStr($str)
                         $count ++;
                     }
                     if ($landmine[$m][$n] != $count){
-                   echo "<br>" . "[" . $m . " , " . $n . "]" . " 判斷錯誤，應該為" . $mineCount . "<br>";
+                   echo "<br>" . "[" . $m . " , " . $n . "]" . " 判斷錯誤，應該為" . $count . "<br>";
                 }
                 }
             }
