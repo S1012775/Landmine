@@ -21,23 +21,24 @@ if(strlen($strNoN) != 10) {
     echo "不是10*10的陣列。";
 }
 
-if(substr_count("$str","N") !=9) {
+if(substr_count($str,"N") != 9) {
     echo "N的數量應為9個，目前N數量為" . substr_count("$str","N") ."。";
 }
 
-if(substr_count("$str","M") !=40) {
+if(substr_count($str,"M") != 40) {
     echo "炸彈數目應為40個，目前炸彈數目是" . substr_count("$str","M") . "個。";
 }
-
-if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str","N") ==9){
-       $checkStr = 109;
-    }
 
 if(!preg_match($standard, $str, $value)) {
     echo "格式不正確，出現M/N及0-8以外的字元。";
 }
 
-if($checkStr == 109 ) {
+if(mb_strlen($str) == 109 && substr_count("$str","M") == 40 && substr_count("$str","N") == 9 && preg_match($standard, $str, $value)){
+       $checkStr = true;
+}
+
+if($checkStr == true ) {
+    $check = true;
     for ($m = 0; $m < 10; $m ++) {
         for ($n = 0; $n < 10; $n ++) {
             $count = 0;
@@ -67,13 +68,14 @@ if($checkStr == 109 ) {
                     $count ++;
                 }
                 if ($landmine[$m][$n] != $count){
-               echo "座標[" . $m . " , " . $n . "]" . "應為" . $count ."。" ;
-            }
+                    $check = false;
+                    echo "座標[" . $m . " , " . $n . "]" . "應為" . $count ."。" ;
+                }
             }
         }
     }
 }
 
-if(mb_strlen($str) == 109 && substr_count("$str","M") == 40 && substr_count("$str","N") == 9 && $landmine[$m][$n] === $count ){
-       echo "符合" ;
-    }
+if($check == true) {
+    echo "符合。" ;
+}
