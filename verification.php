@@ -3,6 +3,7 @@
 header("content-type: text/html; charset=utf-8");
 $str = $_GET["map"];
 
+$standard = "/^([0-9MN]+)$/";
 
 $replaceN = str_replace("N","","$str");//去掉N
 $frame = str_split($replaceN); //存為陣列
@@ -43,6 +44,9 @@ if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str
        $checkStr = 109;
     }
 
+if(!preg_match($standard, $str, $value)) {
+    echo "輸入格式不正確";
+}
 
 if($checkStr == 109 ) {
     for ($m = 0; $m < 10; $m ++) {
@@ -74,7 +78,7 @@ if($checkStr == 109 ) {
                     $count ++;
                 }
                 if ($landmine[$m][$n] != $count){
-               echo "[" . $m . " , " . $n . "]" . " 判斷不符合，應該為" . $count ;
+               echo "[" . $m . " , " . $n . "]" . "=" . $count ;
             }
             }
         }
