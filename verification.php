@@ -13,17 +13,6 @@ for($i = 0; $i < 10; $i++) {
     $strNoN = $explodeN [$i];
 }
 
-for ($m = 0; $m < 10; $m ++){
-    for ($n = 0; $n < 10; $n ++){
-        echo $landmine[$m][$n];
-    }
-    if ($m < 9) {
-        echo "N" ."<br>";
-    }
-}
-echo"<br>";
-// echo strlen($str);
-
 if(strlen($str) != 109) {
     echo "長度不符合，您的字串長度為" . strlen($str) ."。";
 }
