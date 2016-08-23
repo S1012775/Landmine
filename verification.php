@@ -3,7 +3,7 @@
 header("content-type: text/html; charset=utf-8");
 $str = $_GET["map"];
 
-$standard = "/^([0-9MN]+)$/";
+$standard = "/^([0-8MN]+)$/";
 
 $replaceN = str_replace("N","","$str");//去掉N
 $frame = str_split($replaceN); //存為陣列
