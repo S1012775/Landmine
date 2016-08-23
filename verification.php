@@ -34,7 +34,7 @@ if(mb_strlen($str) == 109 && substr_count("$str","M") ==40 && substr_count("$str
     }
 
 if(!preg_match($standard, $str, $value)) {
-    echo "輸入格式不正確"."。";
+    echo "輸入格式不正確，出現M/N及0-8以外的字元。";
 }
 
 if($checkStr == 109 ) {
@@ -67,7 +67,7 @@ if($checkStr == 109 ) {
                     $count ++;
                 }
                 if ($landmine[$m][$n] != $count){
-               echo "[" . $m . " , " . $n . "]" . "=" . $count ."。" ;
+               echo "座標[" . $m . " , " . $n . "]" . "應為" . $count ."。" ;
             }
             }
         }
